@@ -1,5 +1,5 @@
 package io.vertraum.devtools.sql.generator.builder.api
 
-interface StmtBuilder : CanPrecedeOrder, CanGenerateSql {
+interface CanGenerateSql {
     // TODO: implement
 }
