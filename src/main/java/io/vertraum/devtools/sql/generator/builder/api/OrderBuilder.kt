@@ -1,5 +1,5 @@
 package io.vertraum.devtools.sql.generator.builder.api
 
-interface DeleteStmtBuilder : StmtBuilder, CanHaveConditions {
+interface OrderBuilder : ClauseBuilder {
     // TODO: implement
 }
