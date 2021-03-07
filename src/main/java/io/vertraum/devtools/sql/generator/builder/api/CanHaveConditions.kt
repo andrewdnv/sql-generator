@@ -1,5 +1,7 @@
 package io.vertraum.devtools.sql.generator.builder.api
 
-interface CanHaveConditions {
+import io.vertraum.devtools.sql.generator.builder.spi.ConditionBuilder
+
+interface CanHaveConditions<T : ConditionBuilder> {
     // TODO: implement
 }
