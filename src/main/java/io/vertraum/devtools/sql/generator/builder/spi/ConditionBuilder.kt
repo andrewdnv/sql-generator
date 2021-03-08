@@ -5,6 +5,6 @@ import io.vertraum.devtools.sql.generator.builder.api.AdditionalClauseBuilder
 import io.vertraum.devtools.sql.generator.table.spi.Table
 
 interface ConditionBuilder<T : Table, C : ConditionBuilder<T, C>> : AdditionalClauseBuilder, CanPrecedeOrder {
-    val table: Table
+    val table: T
     // TODO: implement
 }
