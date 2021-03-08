@@ -12,18 +12,18 @@ import io.vertraum.devtools.sql.generator.builder.spi.ConditionBuilder
 import io.vertraum.devtools.sql.generator.context.StmtContext
 import io.vertraum.devtools.sql.generator.table.spi.Table
 
-class SqlGenerator<T : ConditionBuilder> private constructor(val ctx: StmtContext) {
+class SqlGenerator<T : Table, C : ConditionBuilder<T, C>> private constructor(val ctx: StmtContext) {
 
     companion object {
-        fun <T : ConditionBuilder> of(table: Table<T>) = SqlGenerator<T>(StmtContext(table))
+        fun <T : Table, C : ConditionBuilder<T, C>> of(table: T) = SqlGenerator<T, C>(StmtContext(table))
     }
 
-    fun select(): SelectBuilder<T> = SelectBuilderImpl(ctx)
+    fun select(): SelectBuilder<T, C> = SelectBuilderImpl(ctx)
 
     fun insert(): InsertBuilder = InsertBuilderImpl(ctx)
 
-    fun update(): UpdateBuilder<T> = UpdateBuilderImpl(ctx)
+    fun update(): UpdateBuilder<T, C> = UpdateBuilderImpl(ctx)
 
-    fun delete(): DeleteBuilder<T> = DeleteBuilderImpl(ctx)
+    fun delete(): DeleteBuilder<T, C> = DeleteBuilderImpl(ctx)
 
 }
