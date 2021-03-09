@@ -1,5 +1,8 @@
 package io.vertraum.devtools.sql.generator.builder.api
 
-interface CanPrecedeOrder : ShouldFillContext {
+import io.vertraum.devtools.sql.generator.builder.spi.ConditionBuilder
+import io.vertraum.devtools.sql.generator.table.spi.Table
+
+interface CanPrecedeOrder<T : Table, C : ConditionBuilder<T, C>> : ShouldFillContext<T, C> {
     // TODO: implement
 }
