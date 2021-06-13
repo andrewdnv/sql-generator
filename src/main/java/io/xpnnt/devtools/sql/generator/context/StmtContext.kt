@@ -1,7 +1,7 @@
-package io.vertraum.devtools.sql.generator.context
+package io.xpnnt.devtools.sql.generator.context
 
-import io.vertraum.devtools.sql.generator.builder.spi.ConditionBuilder
-import io.vertraum.devtools.sql.generator.table.spi.Table
+import io.xpnnt.devtools.sql.generator.builder.spi.ConditionBuilder
+import io.xpnnt.devtools.sql.generator.table.spi.Table
 
 class StmtContext<T : Table, C : ConditionBuilder<T, C>>(val table: T) {
 

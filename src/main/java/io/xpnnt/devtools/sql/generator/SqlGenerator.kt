@@ -1,13 +1,13 @@
-package io.vertraum.devtools.sql.generator
+package io.xpnnt.devtools.sql.generator
 
-import io.vertraum.devtools.sql.generator.builder.DeleteBuilderImpl
-import io.vertraum.devtools.sql.generator.builder.InsertBuilderImpl
-import io.vertraum.devtools.sql.generator.builder.SelectBuilderImpl
-import io.vertraum.devtools.sql.generator.builder.UpdateBuilderImpl
-import io.vertraum.devtools.sql.generator.builder.api.*
-import io.vertraum.devtools.sql.generator.builder.spi.ConditionBuilder
-import io.vertraum.devtools.sql.generator.context.StmtContext
-import io.vertraum.devtools.sql.generator.table.spi.Table
+import io.xpnnt.devtools.sql.generator.builder.DeleteBuilderImpl
+import io.xpnnt.devtools.sql.generator.builder.InsertBuilderImpl
+import io.xpnnt.devtools.sql.generator.builder.SelectBuilderImpl
+import io.xpnnt.devtools.sql.generator.builder.UpdateBuilderImpl
+import io.xpnnt.devtools.sql.generator.builder.api.*
+import io.xpnnt.devtools.sql.generator.builder.spi.ConditionBuilder
+import io.xpnnt.devtools.sql.generator.context.StmtContext
+import io.xpnnt.devtools.sql.generator.table.spi.Table
 import kotlin.reflect.KClass
 
 class SqlGenerator<T : Table, C : ConditionBuilder<T, C>> private constructor(val ctx: StmtContext<T, C>) {
