@@ -4,20 +4,21 @@ import io.xpnnt.devtools.sql.generator.table.spi.Table
 
 sealed class Column(
     val table: Table,
+    val name: String?,
     val alias: String,
     val paramName: String
 )
 
 class TableColumn(
     table: Table,
-    val name: String,
+    name: String,
     alias: String,
     paramName: String
-) : Column(table, alias, paramName)
+) : Column(table, name, alias, paramName)
 
 class PseudoColumn(
     table: Table,
     val expression: String,
     alias: String,
     paramName: String
-) : Column(table, alias, paramName)
+) : Column(table, null, alias, paramName)
