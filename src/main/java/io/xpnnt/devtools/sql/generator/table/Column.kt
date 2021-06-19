@@ -1,7 +1,21 @@
 package io.xpnnt.devtools.sql.generator.table
 
-class Column(
-    val name: String,
+import io.xpnnt.devtools.sql.generator.table.spi.Table
+
+sealed class Column(
     val alias: String,
-    val paramName: String = name
+    val paramName: String
 )
+
+class TableColumn(
+    val table: Table,
+    val name: String,
+    alias: String,
+    paramName: String
+) : Column(alias, paramName)
+
+class PseudoColumn(
+    val expression: String,
+    alias: String,
+    paramName: String
+) : Column(alias, paramName)
