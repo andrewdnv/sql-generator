@@ -1,5 +1,6 @@
 package io.xpnnt.devtools.sql.generator.table
 
-interface Column {
-    // TODO: implement
-}
+class Column(
+    val name: String,
+    val alias: String
+)
