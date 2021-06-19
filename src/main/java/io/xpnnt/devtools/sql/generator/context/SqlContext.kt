@@ -6,7 +6,7 @@ import io.xpnnt.devtools.sql.generator.table.spi.Table
 
 class SqlContext<T : Table, C : ConditionBuilder<T, C>>(val table: T) {
 
-    private val optionMap: MutableMap<OptionName, Int> = mutableMapOf(
+    val optionMap: MutableMap<OptionName, Int> = mutableMapOf(
         OptionName.KEYWORD_CASE to CaseOption.UPPER.value,
         OptionName.IDENTIFIER_CASE to CaseOption.LOWER.value,
         OptionName.PARAMETER_CASE to CaseOption.AS_IS.value,
@@ -17,10 +17,6 @@ class SqlContext<T : Table, C : ConditionBuilder<T, C>>(val table: T) {
     )
 
     lateinit var conditionBuilder: C
-
-    fun putOption(name: OptionName, value: Int) = optionMap.put(name, value)
-
-    fun getOption(name: OptionName): Int = optionMap[name]!!
 
     // TODO: implement
 
