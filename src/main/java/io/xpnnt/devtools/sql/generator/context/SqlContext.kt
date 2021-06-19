@@ -9,7 +9,7 @@ class SqlContext<T : Table, C : ConditionBuilder<T, C>>(val table: T) {
     private val optionMap: MutableMap<OptionName, Int> = mutableMapOf(
         OptionName.KEYWORD_CASE to CaseOption.UPPER.value,
         OptionName.IDENTIFIER_CASE to CaseOption.LOWER.value,
-        OptionName.PARAMETER_CASE to CaseOption.LOWER.value,
+        OptionName.PARAMETER_CASE to CaseOption.AS_IS.value,
         OptionName.USE_TABLE_ALIAS to ChoiceOption.NO.value,
         OptionName.USE_COLUMN_ALIAS to ChoiceOption.YES.value,
         OptionName.COLUMN_ALIAS_WORD to AliasOption.AS.value,
