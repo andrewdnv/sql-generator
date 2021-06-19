@@ -12,6 +12,7 @@ class SqlContext<T : Table, C : ConditionBuilder<T, C>>(val table: T) {
         OptionName.PARAMETER_CASE to CaseOption.AS_IS.value,
         OptionName.USE_TABLE_ALIAS to ChoiceOption.NO.value,
         OptionName.USE_COLUMN_ALIAS to ChoiceOption.YES.value,
+        OptionName.USE_COLUMN_PREFIX to ChoiceOption.YES.value,
         OptionName.COLUMN_ALIAS_WORD to AliasOption.AS.value,
         OptionName.COLUMN_ALIAS_FORM to FormOption.FULL.value
     )
