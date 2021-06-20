@@ -15,6 +15,7 @@ class SqlContext<T : Table, C : ConditionBuilder<T, C>>(val table: T) {
         OptionName.USE_COLUMN_PREFIX to ChoiceOption.YES.value,
         OptionName.COLUMN_ALIAS_FORM to FormOption.FULL.value,
         OptionName.ALIAS_WORD to AliasOption.AS.value,
+        OptionName.COMPARISON_CONNECTOR to ConnectorOption.AND.value
     )
 
     lateinit var conditionBuilder: C
