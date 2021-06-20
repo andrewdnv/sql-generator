@@ -61,7 +61,7 @@ class SelectColumnPrintTask(
     }
 
     private fun columnAliasWord(): String {
-        val columnAliasWordValue = optionMap[OptionName.COLUMN_ALIAS_WORD]
+        val columnAliasWordValue = optionMap[OptionName.ALIAS_WORD]
         val columnAliasWord = if (columnAliasWordValue == AliasOption.NONE.value) {
             ""
         } else {
