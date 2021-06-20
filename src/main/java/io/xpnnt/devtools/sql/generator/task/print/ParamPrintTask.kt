@@ -12,9 +12,9 @@ class ParamPrintTask(
     override fun print(): String {
         val paramCaseValue = optionMap[OptionName.PARAMETER_CASE]
         val paramName = if (paramCaseValue == CaseOption.UPPER.value) {
-            column.paramName.toUpperCase()
+            column.paramName!!.toUpperCase()
         } else if (paramCaseValue == CaseOption.LOWER.value) {
-            column.paramName.toLowerCase()
+            column.paramName!!.toLowerCase()
         } else {
             column.paramName
         }

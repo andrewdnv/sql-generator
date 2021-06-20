@@ -28,7 +28,7 @@ class SelectBuilderImpl<T : Table, C : ConditionBuilder<T, C>>(override val ctx:
     }
 
     override fun expression(expression: String, alias: String, paramName: String): SelectBuilder<T, C> {
-        columns.add(PseudoColumn(ctx.table, expression, alias, paramName))
+        columns.add(PseudoColumn(ctx.table, expression, alias))
         return this
     }
 

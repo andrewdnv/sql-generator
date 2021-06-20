@@ -6,7 +6,7 @@ sealed class Column(
     val table: Table,
     val name: String?,
     val alias: String,
-    val paramName: String
+    val paramName: String?
 )
 
 class TableColumn(
@@ -19,6 +19,5 @@ class TableColumn(
 class PseudoColumn(
     table: Table,
     val expression: String,
-    alias: String,
-    paramName: String
-) : Column(table, null, alias, paramName)
+    alias: String
+) : Column(table, null, alias, null)
