@@ -6,6 +6,7 @@ import io.xpnnt.devtools.sql.generator.context.SqlContext
 import io.xpnnt.devtools.sql.generator.table.Column
 import io.xpnnt.devtools.sql.generator.table.PseudoColumn
 import io.xpnnt.devtools.sql.generator.table.spi.Table
+import io.xpnnt.devtools.sql.generator.task.print.SelectPrintTask
 
 class SelectBuilderImpl<T : Table, C : ConditionBuilder<T, C>>(override val ctx: SqlContext<T, C>) : SelectBuilder<T, C> {
 
@@ -33,7 +34,7 @@ class SelectBuilderImpl<T : Table, C : ConditionBuilder<T, C>>(override val ctx:
     }
 
     override fun build() {
-        // TODO: implement
+        ctx.mainClause = SelectPrintTask(ctx.optionMap, columns, ctx.table).print()
     }
 
 }

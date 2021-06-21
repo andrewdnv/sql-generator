@@ -8,5 +8,7 @@ enum class ComparisonOperator {
     GREATER_OR_EQUAL,
     LESS_OR_EQUAL,
     LIKE,
-    IN
+    IN,
+    NOT_LIKE,
+    NOT_IN
 }

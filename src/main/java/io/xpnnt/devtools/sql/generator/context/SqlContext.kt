@@ -20,6 +20,8 @@ class SqlContext<T : Table, C : ConditionBuilder<T, C>>(val table: T) {
 
     lateinit var conditionBuilder: C
 
+    var mainClause: String = ""
+
     // TODO: implement
 
 }

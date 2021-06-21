@@ -6,7 +6,8 @@ sealed class Condition
 
 class SimpleCondition(
     val column: Column,
-    val operator: ComparisonOperator
+    val operator: ComparisonOperator,
+    val ignoreCase: Boolean = false
 ) : Condition()
 
 class CustomCondition(
