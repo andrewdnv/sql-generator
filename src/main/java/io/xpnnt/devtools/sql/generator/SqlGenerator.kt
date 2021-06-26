@@ -1,9 +1,6 @@
 package io.xpnnt.devtools.sql.generator
 
-import io.xpnnt.devtools.sql.generator.builder.DeleteBuilderImpl
-import io.xpnnt.devtools.sql.generator.builder.InsertBuilderImpl
-import io.xpnnt.devtools.sql.generator.builder.SelectBuilderImpl
-import io.xpnnt.devtools.sql.generator.builder.UpdateBuilderImpl
+import io.xpnnt.devtools.sql.generator.builder.*
 import io.xpnnt.devtools.sql.generator.builder.api.*
 import io.xpnnt.devtools.sql.generator.builder.spi.ConditionBuilder
 import io.xpnnt.devtools.sql.generator.context.SqlContext
@@ -20,6 +17,7 @@ class SqlGenerator<T : Table, C : ConditionBuilder<T, C>> private constructor(va
         fun <T : Table, C : ConditionBuilder<T, C>> of(table: T, conditionBuilderFactory: (ctx: SqlContext<T, C>) -> C): SqlGenerator<T, C> {
             val ctx = SqlContext<T, C>(table)
             ctx.conditionBuilder = conditionBuilderFactory(ctx)
+            ctx.orderBuilder = OrderBuilderImpl(ctx)
             return SqlGenerator<T, C>(ctx)
         }
     }
