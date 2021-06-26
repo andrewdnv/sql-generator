@@ -11,7 +11,9 @@ class SelectColumnPrintTask(
 
     override fun print(): String {
         val useColumnAliasValue = optionMap[OptionName.USE_COLUMN_ALIAS]
-        return if (useColumnAliasValue == ChoiceOption.NO.value) {
+        return if (column is PseudoColumn) {
+            "${column.expression} ${columnAliasExpression()}"
+        } else if (useColumnAliasValue == ChoiceOption.NO.value) {
             columnName()
         } else {
             "${columnName()} ${columnAliasExpression()}"
@@ -20,9 +22,7 @@ class SelectColumnPrintTask(
 
     private fun columnName(): String {
         val useColumnPrefixValue = optionMap[OptionName.USE_COLUMN_PREFIX]
-        val columnName = if (column is PseudoColumn) {
-            column.expression
-        } else if (useColumnPrefixValue == ChoiceOption.NO.value) {
+        val columnName = if (useColumnPrefixValue == ChoiceOption.NO.value) {
             column.name!!
         } else {
             "${tableName()}.${column.name!!}"

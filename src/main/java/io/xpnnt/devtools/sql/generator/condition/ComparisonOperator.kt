@@ -1,14 +1,14 @@
 package io.xpnnt.devtools.sql.generator.condition
 
-enum class ComparisonOperator {
-    EQUAL,
-    NOT_EQUAL,
-    GREATER,
-    LESS,
-    GREATER_OR_EQUAL,
-    LESS_OR_EQUAL,
-    LIKE,
-    IN,
-    NOT_LIKE,
-    NOT_IN
+enum class ComparisonOperator(val value: String) {
+    EQUAL("="),
+    NOT_EQUAL("<>"),
+    GREATER(">"),
+    LESS("<"),
+    GREATER_OR_EQUAL(">="),
+    LESS_OR_EQUAL("<="),
+    LIKE("like"),
+    IN("in"),
+    NOT_LIKE("not like"),
+    NOT_IN("not in")
 }
