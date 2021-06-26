@@ -10,7 +10,7 @@ import io.xpnnt.devtools.sql.generator.task.print.SelectPrintTask
 
 class SelectBuilderImpl<T : Table, C : ConditionBuilder<T, C>>(override val ctx: SqlContext<T, C>) : SelectBuilder<T, C> {
 
-    private val columns = mutableListOf<Column>()
+    override val columns = mutableListOf<Column>()
 
     override fun column(column: Column): SelectBuilder<T, C> {
         columns.add(column)

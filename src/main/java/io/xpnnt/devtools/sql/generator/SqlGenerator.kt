@@ -17,7 +17,6 @@ class SqlGenerator<T : Table, C : ConditionBuilder<T, C>> private constructor(va
         fun <T : Table, C : ConditionBuilder<T, C>> of(table: T, conditionBuilderFactory: (ctx: SqlContext<T, C>) -> C): SqlGenerator<T, C> {
             val ctx = SqlContext<T, C>(table)
             ctx.conditionBuilder = conditionBuilderFactory(ctx)
-            ctx.orderBuilder = OrderBuilderImpl(ctx)
             return SqlGenerator<T, C>(ctx)
         }
     }

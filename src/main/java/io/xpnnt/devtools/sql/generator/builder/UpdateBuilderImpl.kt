@@ -9,7 +9,7 @@ import io.xpnnt.devtools.sql.generator.task.print.UpdatePrintTask
 
 class UpdateBuilderImpl<T : Table, C : ConditionBuilder<T, C>>(override val ctx: SqlContext<T, C>) : UpdateBuilder<T, C> {
 
-    private val columns = mutableListOf<Column>()
+    override val columns = mutableListOf<Column>()
 
     override fun column(column: Column): UpdateBuilder<T, C> {
         columns.add(column)
