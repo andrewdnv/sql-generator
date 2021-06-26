@@ -35,7 +35,9 @@ class SqlContext<T : Table, C : ConditionBuilder<T, C>>(val table: T) {
     var orderClause: String = ""
         set(value) { if (field.isEmpty()) field = value else return }
 
-    // TODO: implement
+    fun sql() = listOf(mainClause, whereClause, groupClause, havingClause, orderClause)
+        .filter { !it.isEmpty() }
+        .joinToString { " " }
 
 }
 
