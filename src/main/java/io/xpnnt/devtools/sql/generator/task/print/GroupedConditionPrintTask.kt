@@ -16,7 +16,7 @@ class GroupedConditionPrintTask(
     }
 
     private fun conditionsExpression(): String =
-        condition.conditions.map { condition(it) }.joinToString { connector() }
+        condition.conditions.map { condition(it) }.joinToString { " ${connector()} " }
 
     private fun condition(innerCondition: Condition): String =
         ConditionPrintTaskFactory.getTask(optionMap, innerCondition).print()
