@@ -73,8 +73,8 @@ class SimpleConditionPrintTask(
         } else {
             "${condition.column.table.alias}_${condition.column.alias}"
         }
-        val keywordCaseValue = optionMap[OptionName.KEYWORD_CASE]
-        return if (keywordCaseValue == CaseOption.LOWER.value) {
+        val identifierCaseValue = optionMap[OptionName.IDENTIFIER_CASE]
+        return if (identifierCaseValue == CaseOption.LOWER.value) {
             columnAlias.toLowerCase()
         } else {
             columnAlias.toUpperCase()

@@ -23,7 +23,13 @@ class SqlContext<T : Table, C : ConditionBuilder<T, C>>(val table: T) {
     var mainClause: String = ""
         set(value) { if (field.isEmpty()) field = value else return }
 
-    var conditionClause: String = ""
+    var whereClause: String = ""
+        set(value) { if (field.isEmpty()) field = value else return }
+
+    var groupClause: String = ""
+        set(value) { if (field.isEmpty()) field = value else return }
+
+    var havingClause: String = ""
         set(value) { if (field.isEmpty()) field = value else return }
 
     var orderClause: String = ""
