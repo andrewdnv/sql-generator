@@ -14,9 +14,9 @@ class InsertPrintTask(
     override fun print(): String {
         val identifierCaseValue = optionMap[OptionName.IDENTIFIER_CASE]
         val tableName = if (identifierCaseValue == CaseOption.UPPER.value) {
-            table.name.toUpperCase()
+            table.name!!.toUpperCase()
         } else {
-            table.name.toLowerCase()
+            table.name!!.toLowerCase()
         }
         val paramList = columns
             .map { ParamPrintTask(optionMap, it) }

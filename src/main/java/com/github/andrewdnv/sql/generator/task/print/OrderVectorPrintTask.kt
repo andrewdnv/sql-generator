@@ -39,18 +39,18 @@ class OrderVectorPrintTask(
     private fun tableName(): String {
         val identifierCaseValue = optionMap[OptionName.IDENTIFIER_CASE]
         return if (identifierCaseValue == CaseOption.UPPER.value) {
-            orderVector.column.table.name.toUpperCase()
+            orderVector.column.table.name!!.toUpperCase()
         } else {
-            orderVector.column.table.name.toLowerCase()
+            orderVector.column.table.name!!.toLowerCase()
         }
     }
 
     private fun tableAlias(): String {
         val identifierCaseValue = optionMap[OptionName.IDENTIFIER_CASE]
         return if (identifierCaseValue == CaseOption.UPPER.value) {
-            orderVector.column.table.alias.toUpperCase()
+            orderVector.column.table.alias!!.toUpperCase()
         } else {
-            orderVector.column.table.alias.toLowerCase()
+            orderVector.column.table.alias!!.toLowerCase()
         }
     }
 

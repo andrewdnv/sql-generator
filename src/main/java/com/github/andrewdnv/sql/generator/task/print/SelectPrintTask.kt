@@ -52,18 +52,18 @@ class SelectPrintTask(
     private fun tableName(): String {
         val identifierCaseValue = optionMap[OptionName.IDENTIFIER_CASE]
         return if (identifierCaseValue == CaseOption.UPPER.value) {
-            table.name.toUpperCase()
+            table.name!!.toUpperCase()
         } else {
-            table.name.toLowerCase()
+            table.name!!.toLowerCase()
         }
     }
 
     private fun tableAliasExpression(): String {
         val identifierCaseValue = optionMap[OptionName.IDENTIFIER_CASE]
         val tableAliasCased = if (identifierCaseValue == CaseOption.UPPER.value) {
-            table.alias.toUpperCase()
+            table.alias!!.toUpperCase()
         } else {
-            table.alias.toLowerCase()
+            table.alias!!.toLowerCase()
         }
         return "${tableAliasWord()}$tableAliasCased"
     }

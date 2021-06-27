@@ -45,18 +45,18 @@ class CustomConditionPrintTask(
     private fun tableName(): String {
         val identifierCaseValue = optionMap[OptionName.IDENTIFIER_CASE]
         return if (identifierCaseValue == CaseOption.UPPER.value) {
-            condition.column!!.table.name.toUpperCase()
+            condition.column!!.table.name!!.toUpperCase()
         } else {
-            condition.column!!.table.name.toLowerCase()
+            condition.column!!.table.name!!.toLowerCase()
         }
     }
 
     private fun tableAlias(): String {
         val identifierCaseValue = optionMap[OptionName.IDENTIFIER_CASE]
         return if (identifierCaseValue == CaseOption.UPPER.value) {
-            condition.column!!.table.alias.toUpperCase()
+            condition.column!!.table.alias!!.toUpperCase()
         } else {
-            condition.column!!.table.alias.toLowerCase()
+            condition.column!!.table.alias!!.toLowerCase()
         }
     }
 

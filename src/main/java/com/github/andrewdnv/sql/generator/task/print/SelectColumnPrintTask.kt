@@ -38,9 +38,9 @@ class SelectColumnPrintTask(
     private fun tableName(): String {
         val useTableAliasValue = optionMap[OptionName.USE_TABLE_ALIAS]
         return if (useTableAliasValue == ChoiceOption.YES.value) {
-            column.table.alias
+            column.table.alias!!
         } else {
-            column.table.name
+            column.table.name!!
         }
     }
 

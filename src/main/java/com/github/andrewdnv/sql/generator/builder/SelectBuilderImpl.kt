@@ -5,6 +5,7 @@ import com.github.andrewdnv.sql.generator.builder.spi.ConditionBuilder
 import com.github.andrewdnv.sql.generator.context.SqlContext
 import com.github.andrewdnv.sql.generator.table.Column
 import com.github.andrewdnv.sql.generator.table.PseudoColumn
+import com.github.andrewdnv.sql.generator.table.spi.SimpleTable
 import com.github.andrewdnv.sql.generator.task.print.SelectPrintTask
 
 class SelectBuilderImpl<CB : ConditionBuilder<CB>>(override val ctx: SqlContext<CB>) : SelectBuilder<CB> {
@@ -27,8 +28,8 @@ class SelectBuilderImpl<CB : ConditionBuilder<CB>>(override val ctx: SqlContext<
         return this
     }
 
-    override fun expression(expression: String, alias: String, paramName: String): SelectBuilder<CB> {
-        columns.add(PseudoColumn(ctx.table, expression, alias))
+    override fun expression(table: SimpleTable, expression: String, alias: String, paramName: String): SelectBuilder<CB> {
+        columns.add(PseudoColumn(table, expression, alias))
         return this
     }
 

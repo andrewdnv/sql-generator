@@ -39,18 +39,18 @@ class GroupColumnPrintTask(
     private fun tableName(): String {
         val identifierCaseValue = optionMap[OptionName.IDENTIFIER_CASE]
         return if (identifierCaseValue == CaseOption.UPPER.value) {
-            column.table.name.toUpperCase()
+            column.table.name!!.toUpperCase()
         } else {
-            column.table.name.toLowerCase()
+            column.table.name!!.toLowerCase()
         }
     }
 
     private fun tableAlias(): String {
         val identifierCaseValue = optionMap[OptionName.IDENTIFIER_CASE]
         return if (identifierCaseValue == CaseOption.UPPER.value) {
-            column.table.alias.toUpperCase()
+            column.table.alias!!.toUpperCase()
         } else {
-            column.table.alias.toLowerCase()
+            column.table.alias!!.toLowerCase()
         }
     }
 

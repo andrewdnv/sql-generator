@@ -12,9 +12,9 @@ class DeletePrintTask(
     override fun print(): String {
         val identifierCaseValue = optionMap[OptionName.IDENTIFIER_CASE]
         val tableName = if (identifierCaseValue == CaseOption.UPPER.value) {
-            table.name.toUpperCase()
+            table.name!!.toUpperCase()
         } else {
-            table.name.toLowerCase()
+            table.name!!.toLowerCase()
         }
         val keywordCaseValue = optionMap[OptionName.KEYWORD_CASE]
         return if (keywordCaseValue == CaseOption.LOWER.value) {
