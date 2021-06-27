@@ -12,7 +12,8 @@ class SimpleCondition(
 
 class CustomCondition(
     val column: Column? = null,
-    val expression: String
+    val expression: String,
+    val ignoreCase: Boolean = false
 ) : Condition()
 
 class GroupedCondition(
