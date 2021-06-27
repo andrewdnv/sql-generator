@@ -2,12 +2,11 @@ package io.xpnnt.devtools.sql.generator.builder.api
 
 import io.xpnnt.devtools.sql.generator.builder.spi.ConditionBuilder
 import io.xpnnt.devtools.sql.generator.context.Context
-import io.xpnnt.devtools.sql.generator.table.spi.Table
 
-interface HasContext<T : Table, C : ConditionBuilder<T, C>> {
-    val ctx: Context<T, C>
+interface HasContext<CB : ConditionBuilder<CB>> {
+    val ctx: Context<CB>
 
     fun fillContext()
 }
 
-typealias ShouldFillContext<T, C> = HasContext<T, C>
+typealias ShouldFillContext<CB> = HasContext<CB>

@@ -7,26 +7,26 @@ import io.xpnnt.devtools.sql.generator.context.SqlContext
 import io.xpnnt.devtools.sql.generator.table.spi.Table
 import kotlin.reflect.KClass
 
-class SqlGenerator<T : Table, C : ConditionBuilder<T, C>> private constructor(val ctx: SqlContext<T, C>) {
+class SqlGenerator<CB : ConditionBuilder<CB>> private constructor(val ctx: SqlContext<CB>) {
 
     companion object {
-        fun <T : Table, C : ConditionBuilder<T, C>> of(table: T, conditionBuilderKClass: KClass<C>): SqlGenerator<T, C> {
+        fun <CB : ConditionBuilder<CB>> of(table: Table, conditionBuilderKClass: KClass<CB>): SqlGenerator<CB> {
             return of(table, conditionBuilderKClass.constructors.first()::call)
         }
 
-        fun <T : Table, C : ConditionBuilder<T, C>> of(table: T, conditionBuilderFactory: (ctx: SqlContext<T, C>) -> C): SqlGenerator<T, C> {
-            val ctx = SqlContext<T, C>(table)
+        fun <CB : ConditionBuilder<CB>> of(table: Table, conditionBuilderFactory: (ctx: SqlContext<CB>) -> CB): SqlGenerator<CB> {
+            val ctx = SqlContext<CB>(table)
             ctx.conditionBuilder = conditionBuilderFactory(ctx)
-            return SqlGenerator<T, C>(ctx)
+            return SqlGenerator(ctx)
         }
     }
 
-    fun select(): SelectBuilder<T, C> = SelectBuilderImpl(ctx)
+    fun select(): SelectBuilder<CB> = SelectBuilderImpl(ctx)
 
-    fun insert(): InsertBuilder<T, C> = InsertBuilderImpl(ctx)
+    fun insert(): InsertBuilder<CB> = InsertBuilderImpl(ctx)
 
-    fun update(): UpdateBuilder<T, C> = UpdateBuilderImpl(ctx)
+    fun update(): UpdateBuilder<CB> = UpdateBuilderImpl(ctx)
 
-    fun delete(): DeleteBuilder<T, C> = DeleteBuilderImpl(ctx)
+    fun delete(): DeleteBuilder<CB> = DeleteBuilderImpl(ctx)
 
 }

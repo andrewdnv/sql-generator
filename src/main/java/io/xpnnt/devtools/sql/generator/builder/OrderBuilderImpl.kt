@@ -6,14 +6,13 @@ import io.xpnnt.devtools.sql.generator.context.SqlContext
 import io.xpnnt.devtools.sql.generator.order.OrderDirection
 import io.xpnnt.devtools.sql.generator.order.OrderVector
 import io.xpnnt.devtools.sql.generator.table.Column
-import io.xpnnt.devtools.sql.generator.table.spi.Table
 import io.xpnnt.devtools.sql.generator.task.print.OrderPrintTask
 
-class OrderBuilderImpl<T : Table, C : ConditionBuilder<T, C>>(override val ctx: SqlContext<T, C>) : OrderBuilder<T, C> {
+class OrderBuilderImpl<CB : ConditionBuilder<CB>>(override val ctx: SqlContext<CB>) : OrderBuilder<CB> {
 
     private val orderVectors = mutableListOf<OrderVector>()
 
-    override fun column(column: Column, direction: OrderDirection): OrderBuilder<T, C> {
+    override fun column(column: Column, direction: OrderDirection): OrderBuilder<CB> {
         orderVectors.add(OrderVector(column, direction))
         return this
     }

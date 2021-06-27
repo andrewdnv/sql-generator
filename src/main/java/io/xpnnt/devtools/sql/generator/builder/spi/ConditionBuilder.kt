@@ -6,10 +6,9 @@ import io.xpnnt.devtools.sql.generator.builder.api.ClauseBuilder
 import io.xpnnt.devtools.sql.generator.condition.Condition
 import io.xpnnt.devtools.sql.generator.context.option.ConditionOption
 import io.xpnnt.devtools.sql.generator.context.option.OptionName
-import io.xpnnt.devtools.sql.generator.table.spi.Table
 import io.xpnnt.devtools.sql.generator.task.print.ResultConditionPrintTask
 
-interface ConditionBuilder<T : Table, C : ConditionBuilder<T, C>> : ClauseBuilder<T, C>, CanPrecedeGroup<T, C>, CanPrecedeOrder<T, C> {
+interface ConditionBuilder<CB : ConditionBuilder<CB>> : ClauseBuilder<CB>, CanPrecedeGroup<CB>, CanPrecedeOrder<CB> {
     val conditions: MutableList<Condition>
 
     override fun build() {

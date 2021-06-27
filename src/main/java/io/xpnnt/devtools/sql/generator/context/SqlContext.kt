@@ -4,7 +4,7 @@ import io.xpnnt.devtools.sql.generator.builder.spi.ConditionBuilder
 import io.xpnnt.devtools.sql.generator.context.option.*
 import io.xpnnt.devtools.sql.generator.table.spi.Table
 
-class SqlContext<T : Table, C : ConditionBuilder<T, C>>(val table: T) {
+class SqlContext<CB : ConditionBuilder<CB>>(val table: Table) {
 
     val optionMap: MutableMap<OptionName, Int> = mutableMapOf(
         OptionName.KEYWORD_CASE to CaseOption.UPPER.value,
@@ -18,7 +18,7 @@ class SqlContext<T : Table, C : ConditionBuilder<T, C>>(val table: T) {
         OptionName.RESULT_COMPARISON_CONNECTOR to ConnectorOption.AND.value
     )
 
-    lateinit var conditionBuilder: C
+    lateinit var conditionBuilder: CB
 
     var mainClause: String = ""
         set(value) { if (field.isEmpty()) field = value else return }
@@ -41,4 +41,4 @@ class SqlContext<T : Table, C : ConditionBuilder<T, C>>(val table: T) {
 
 }
 
-typealias Context<T, C> = SqlContext<T, C>
+typealias Context<CB> = SqlContext<CB>
