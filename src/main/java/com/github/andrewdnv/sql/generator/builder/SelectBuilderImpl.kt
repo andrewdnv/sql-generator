@@ -28,8 +28,9 @@ class SelectBuilderImpl<CB : ConditionBuilder<CB>>(override val ctx: SqlContext<
         return this
     }
 
-    override fun expression(table: SimpleTable, expression: String, alias: String, paramName: String): SelectBuilder<CB> {
-        columns.add(PseudoColumn(table, expression, alias))
+    override fun expression(table: SimpleTable?, expression: String, alias: String, paramName: String): SelectBuilder<CB> {
+        val parentTable = if (table == null && ctx.table is SimpleTable) ctx.table else null
+        columns.add(PseudoColumn(parentTable, expression, alias))
         return this
     }
 

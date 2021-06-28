@@ -1,9 +1,9 @@
 package com.github.andrewdnv.sql.generator.join
 
-import com.github.andrewdnv.sql.generator.table.Column
+import com.github.andrewdnv.sql.generator.table.TableColumn
 
 class TableJoin(
-    val firstColumn: Column,
-    val secondColumn: Column,
+    val firstColumn: TableColumn,
+    val secondColumn: TableColumn,
     val joinType: JoinType
 )

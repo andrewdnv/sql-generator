@@ -38,9 +38,9 @@ class SelectColumnPrintTask(
     private fun tableName(): String {
         val useTableAliasValue = optionMap[OptionName.USE_TABLE_ALIAS]
         return if (useTableAliasValue == ChoiceOption.YES.value) {
-            column.table.alias!!
+            column.table!!.alias!!
         } else {
-            column.table.name!!
+            column.table!!.name!!
         }
     }
 
@@ -48,8 +48,10 @@ class SelectColumnPrintTask(
         val columnAliasFormValue = optionMap[OptionName.COLUMN_ALIAS_FORM]
         val columnAlias = if (columnAliasFormValue == FormOption.SHORT.value) {
             column.alias
-        } else {
+        } else if (column.table != null) {
             "${column.table.alias}_${column.alias}"
+        } else {
+            column.alias
         }
         val identifierCaseValue = optionMap[OptionName.IDENTIFIER_CASE]
         val columnAliasCased = if (identifierCaseValue == CaseOption.UPPER.value) {

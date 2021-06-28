@@ -28,8 +28,8 @@ class PseudoTable : Table() {
     override fun allColumns(): List<Column> {
         val joinedTables = LinkedHashSet<SimpleTable>()
         tableJoins.forEach {
-            joinedTables.add(it.firstColumn.table)
-            joinedTables.add(it.secondColumn.table)
+            joinedTables.add(it.firstColumn.table!!)
+            joinedTables.add(it.secondColumn.table!!)
         }
         return joinedTables.flatMap { it.allColumns() }
     }

@@ -45,18 +45,18 @@ class CustomConditionPrintTask(
     private fun tableName(): String {
         val identifierCaseValue = optionMap[OptionName.IDENTIFIER_CASE]
         return if (identifierCaseValue == CaseOption.UPPER.value) {
-            condition.column!!.table.name!!.toUpperCase()
+            condition.column!!.table!!.name!!.toUpperCase()
         } else {
-            condition.column!!.table.name!!.toLowerCase()
+            condition.column!!.table!!.name!!.toLowerCase()
         }
     }
 
     private fun tableAlias(): String {
         val identifierCaseValue = optionMap[OptionName.IDENTIFIER_CASE]
         return if (identifierCaseValue == CaseOption.UPPER.value) {
-            condition.column!!.table.alias!!.toUpperCase()
+            condition.column!!.table!!.alias!!.toUpperCase()
         } else {
-            condition.column!!.table.alias!!.toLowerCase()
+            condition.column!!.table!!.alias!!.toLowerCase()
         }
     }
 
@@ -73,8 +73,10 @@ class CustomConditionPrintTask(
         val columnAliasFormValue = optionMap[OptionName.COLUMN_ALIAS_FORM]
         val columnAlias = if (columnAliasFormValue == FormOption.SHORT.value) {
             condition.column!!.alias
+        } else if (condition.column!!.table != null) {
+            "${condition.column.table!!.alias}_${condition.column.alias}"
         } else {
-            "${condition.column!!.table.alias}_${condition.column.alias}"
+            condition.column.alias
         }
         val identifierCaseValue = optionMap[OptionName.IDENTIFIER_CASE]
         return if (identifierCaseValue == CaseOption.LOWER.value) {
