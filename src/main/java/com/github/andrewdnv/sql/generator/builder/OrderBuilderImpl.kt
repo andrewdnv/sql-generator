@@ -6,13 +6,14 @@ import com.github.andrewdnv.sql.generator.context.SqlContext
 import com.github.andrewdnv.sql.generator.order.OrderDirection
 import com.github.andrewdnv.sql.generator.order.OrderVector
 import com.github.andrewdnv.sql.generator.table.Column
+import com.github.andrewdnv.sql.generator.table.spi.TableFactory
 import com.github.andrewdnv.sql.generator.task.print.OrderPrintTask
 
-class OrderBuilderImpl<CB : ConditionBuilder<CB>>(override val ctx: SqlContext<CB>) : OrderBuilder<CB> {
+class OrderBuilderImpl<TF : TableFactory<TF, CB>, CB : ConditionBuilder<TF, CB>>(override val ctx: SqlContext<TF, CB>) : OrderBuilder<TF, CB> {
 
     private val orderVectors = mutableListOf<OrderVector>()
 
-    override fun column(column: Column, direction: OrderDirection): OrderBuilder<CB> {
+    override fun column(column: Column, direction: OrderDirection): OrderBuilder<TF, CB> {
         orderVectors.add(OrderVector(column, direction))
         return this
     }

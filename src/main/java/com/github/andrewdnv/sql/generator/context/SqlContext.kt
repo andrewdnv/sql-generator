@@ -2,9 +2,9 @@ package com.github.andrewdnv.sql.generator.context
 
 import com.github.andrewdnv.sql.generator.builder.spi.ConditionBuilder
 import com.github.andrewdnv.sql.generator.context.option.*
-import com.github.andrewdnv.sql.generator.table.spi.Table
+import com.github.andrewdnv.sql.generator.table.spi.TableFactory
 
-class SqlContext<CB : ConditionBuilder<CB>>(val table: Table) {
+class SqlContext<TF : TableFactory<TF, CB>, CB : ConditionBuilder<TF, CB>>(private val tableFactory: TableFactory<TF, CB>) {
 
     val optionMap: MutableMap<OptionName, Int> = mutableMapOf(
         OptionName.KEYWORD_CASE to CaseOption.UPPER.value,
@@ -17,8 +17,6 @@ class SqlContext<CB : ConditionBuilder<CB>>(val table: Table) {
         OptionName.ALIAS_WORD to AliasOption.AS.value,
         OptionName.RESULT_COMPARISON_CONNECTOR to ConnectorOption.AND.value
     )
-
-    lateinit var conditionBuilder: CB
 
     var mainClause: String = ""
         set(value) { if (field.isEmpty()) field = value else return }
@@ -35,10 +33,14 @@ class SqlContext<CB : ConditionBuilder<CB>>(val table: Table) {
     var orderClause: String = ""
         set(value) { if (field.isEmpty()) field = value else return }
 
+    fun table() = tableFactory.table()
+
+    fun conditionBuilder() = tableFactory.conditionBuilder(this)
+
     fun sql() = listOf(mainClause, whereClause, groupClause, havingClause, orderClause)
         .filter { !it.isEmpty() }
         .joinToString { " " }
 
 }
 
-typealias Context<CB> = SqlContext<CB>
+typealias Context<TF, CB> = SqlContext<TF, CB>

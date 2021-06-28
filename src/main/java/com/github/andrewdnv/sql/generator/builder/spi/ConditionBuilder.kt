@@ -6,9 +6,10 @@ import com.github.andrewdnv.sql.generator.builder.api.ClauseBuilder
 import com.github.andrewdnv.sql.generator.condition.Condition
 import com.github.andrewdnv.sql.generator.context.option.ConditionOption
 import com.github.andrewdnv.sql.generator.context.option.OptionName
+import com.github.andrewdnv.sql.generator.table.spi.TableFactory
 import com.github.andrewdnv.sql.generator.task.print.ResultConditionPrintTask
 
-interface ConditionBuilder<CB : ConditionBuilder<CB>> : ClauseBuilder<CB>, CanPrecedeGroup<CB>, CanPrecedeOrder<CB> {
+interface ConditionBuilder<TF : TableFactory<TF, CB>, CB : ConditionBuilder<TF, CB>> : ClauseBuilder<TF, CB>, CanPrecedeGroup<TF, CB>, CanPrecedeOrder<TF, CB> {
     val conditions: MutableList<Condition>
 
     override fun build() {

@@ -4,29 +4,23 @@ import com.github.andrewdnv.sql.generator.builder.*
 import com.github.andrewdnv.sql.generator.builder.api.*
 import com.github.andrewdnv.sql.generator.builder.spi.ConditionBuilder
 import com.github.andrewdnv.sql.generator.context.SqlContext
-import com.github.andrewdnv.sql.generator.table.spi.Table
-import kotlin.reflect.KClass
+import com.github.andrewdnv.sql.generator.table.spi.TableFactory
 
-class SqlGenerator<CB : ConditionBuilder<CB>> private constructor(val ctx: SqlContext<CB>) {
+class SqlGenerator<TF : TableFactory<TF, CB>, CB : ConditionBuilder<TF, CB>> private constructor(val ctx: SqlContext<TF, CB>) {
 
     companion object {
-        fun <CB : ConditionBuilder<CB>> of(table: Table, conditionBuilderKClass: KClass<CB>): SqlGenerator<CB> {
-            return of(table, conditionBuilderKClass.constructors.first()::call)
-        }
-
-        fun <CB : ConditionBuilder<CB>> of(table: Table, conditionBuilderFactory: (ctx: SqlContext<CB>) -> CB): SqlGenerator<CB> {
-            val ctx = SqlContext<CB>(table)
-            ctx.conditionBuilder = conditionBuilderFactory(ctx)
+        fun <TF : TableFactory<TF, CB>, CB : ConditionBuilder<TF, CB>> of(tableFactory: TableFactory<TF, CB>): SqlGenerator<TF, CB> {
+            val ctx = SqlContext(tableFactory)
             return SqlGenerator(ctx)
         }
     }
 
-    fun select(): SelectBuilder<CB> = SelectBuilderImpl(ctx)
+    fun select(): SelectBuilder<TF, CB> = SelectBuilderImpl(ctx)
 
-    fun insert(): InsertBuilder<CB> = InsertBuilderImpl(ctx)
+    fun insert(): InsertBuilder<TF, CB> = InsertBuilderImpl(ctx)
 
-    fun update(): UpdateBuilder<CB> = UpdateBuilderImpl(ctx)
+    fun update(): UpdateBuilder<TF, CB> = UpdateBuilderImpl(ctx)
 
-    fun delete(): DeleteBuilder<CB> = DeleteBuilderImpl(ctx)
+    fun delete(): DeleteBuilder<TF, CB> = DeleteBuilderImpl(ctx)
 
 }
