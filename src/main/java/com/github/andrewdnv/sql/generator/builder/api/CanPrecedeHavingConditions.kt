@@ -8,4 +8,6 @@ interface CanPrecedeHavingConditions<TF : TableFactory<TF, CB>, CB : ConditionBu
     fun having(): CB = ctx
         .conditionBuilder(ConditionType.HAVING)
         .also { fillContext() }
+
+    fun conditionBuilder() = having()
 }

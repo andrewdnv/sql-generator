@@ -8,4 +8,6 @@ interface CanPrecedeWhereConditions<TF : TableFactory<TF, CB>, CB : ConditionBui
     fun where(): CB = ctx
         .conditionBuilder(ConditionType.WHERE)
         .also { fillContext() }
+
+    fun conditionBuilder() = where()
 }
