@@ -1,6 +1,7 @@
 package com.github.andrewdnv.sql.generator.context
 
 import com.github.andrewdnv.sql.generator.builder.spi.ConditionBuilder
+import com.github.andrewdnv.sql.generator.condition.ConditionType
 import com.github.andrewdnv.sql.generator.context.option.*
 import com.github.andrewdnv.sql.generator.table.spi.TableFactory
 
@@ -35,7 +36,7 @@ class SqlContext<TF : TableFactory<TF, CB>, CB : ConditionBuilder<TF, CB>>(priva
 
     fun table() = tableFactory.table()
 
-    fun conditionBuilder() = tableFactory.conditionBuilder(this)
+    fun conditionBuilder(type: ConditionType) = tableFactory.conditionBuilder(this, type)
 
     fun sql() = listOf(mainClause, whereClause, groupClause, havingClause, orderClause)
         .filter { !it.isEmpty() }
