@@ -15,7 +15,7 @@ abstract class SimpleTable(
     name: String,
     alias: String
 ) : Table(name, alias) {
-    fun column(name: String, alias: String, paramName: String = name) =
+    fun column(name: String, alias: String = name, paramName: String = name) =
         TableColumn(this, name, alias, paramName)
 }
 
