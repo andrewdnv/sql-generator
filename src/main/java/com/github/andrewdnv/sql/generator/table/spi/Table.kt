@@ -21,7 +21,7 @@ abstract class SimpleTable(
 
 class PseudoTable : Table() {
 
-    private val tableJoins: MutableList<TableJoin> = mutableListOf()
+    val tableJoins: MutableList<TableJoin> = mutableListOf()
 
     fun addTableJoin(tableJoin: TableJoin) = tableJoins.add(tableJoin)
 
