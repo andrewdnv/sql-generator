@@ -21,12 +21,12 @@ class InsertPrintTask(
         val paramList = columns
             .map { ParamPrintTask(optionMap, it) }
             .map { it.print() }
-            .joinToString(separator = ", ")
+            .joinToString( ", ")
         if (!columns.isEmpty()) {
             val columnList = columns
                 .map { InsertColumnPrintTask(optionMap, it) }
                 .map { it.print() }
-                .joinToString(separator = ", ")
+                .joinToString( ", ")
             return fullInsertStatement(tableName, columnList, paramList)
         } else {
             return shortInsertStatement(tableName, paramList)

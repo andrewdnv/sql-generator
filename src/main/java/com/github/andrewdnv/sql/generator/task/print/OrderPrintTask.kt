@@ -25,6 +25,6 @@ class OrderPrintTask(
     private fun orderVectorsExpression(): String = orderVectors
         .map { OrderVectorPrintTask(optionMap, it) }
         .map { it.print() }
-        .joinToString { ", " }
+        .joinToString ( ", " )
 
 }

@@ -21,7 +21,7 @@ class UpdatePrintTask(
         val columnList = columns
             .map { UpdateColumnPrintTask(optionMap, it) }
             .map { it.print() }
-            .joinToString(separator = ", ")
+            .joinToString( ", ")
         val keywordCaseValue = optionMap[OptionName.KEYWORD_CASE]
         return if (keywordCaseValue == CaseOption.LOWER.value) {
             "update $tableName set $columnList"

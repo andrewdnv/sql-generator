@@ -32,7 +32,7 @@ class ResultConditionPrintTask(
     }
 
     private fun conditionsExpression(): String =
-        conditions.map { condition(it) }.joinToString { " ${connector()} " }
+        conditions.map { condition(it) }.joinToString ( " ${connector()} " )
 
     private fun condition(innerCondition: Condition): String =
         ConditionPrintTaskFactory.getTask(optionMap, innerCondition).print()

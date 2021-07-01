@@ -16,7 +16,7 @@ class SelectPrintTask(
             val columnList = columns
                 .map { SelectColumnPrintTask(optionMap, it) }
                 .map { it.print() }
-                .joinToString(separator = ", ")
+                .joinToString( ", ")
             return fullSelectStatement(columnList)
         } else {
             return shortSelectStatement()

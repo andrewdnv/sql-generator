@@ -25,6 +25,6 @@ class GroupPrintTask(
     private fun columnsExpression(): String = columns
         .map { GroupColumnPrintTask(optionMap, it) }
         .map { it.print() }
-        .joinToString { ", " }
+        .joinToString ( ", " )
 
 }

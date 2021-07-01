@@ -20,10 +20,10 @@ class OrderVectorPrintTask(
         val useColumnAliasValue = optionMap[OptionName.USE_COLUMN_ALIAS]
         return if (orderVector.column is PseudoColumn) {
             columnAlias()
-        } else if (useColumnAliasValue == ChoiceOption.NO.value) {
-            "${tableNameExpression()}.${columnName()}"
-        } else {
+        } else if (useColumnAliasValue == ChoiceOption.YES.value) {
             columnAlias()
+        } else {
+            "${tableNameExpression()}.${columnName()}"
         }
     }
 

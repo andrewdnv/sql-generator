@@ -13,19 +13,19 @@ class SelectColumnPrintTask(
         val useColumnAliasValue = optionMap[OptionName.USE_COLUMN_ALIAS]
         return if (column is PseudoColumn) {
             "${column.expression} ${columnAliasExpression()}"
-        } else if (useColumnAliasValue == ChoiceOption.NO.value) {
-            columnName()
-        } else {
+        } else if (useColumnAliasValue == ChoiceOption.YES.value) {
             "${columnName()} ${columnAliasExpression()}"
+        } else {
+            columnName()
         }
     }
 
     private fun columnName(): String {
         val useColumnPrefixValue = optionMap[OptionName.USE_COLUMN_PREFIX]
-        val columnName = if (useColumnPrefixValue == ChoiceOption.NO.value) {
-            column.name!!
-        } else {
+        val columnName = if (useColumnPrefixValue == ChoiceOption.YES.value) {
             "${tableName()}.${column.name!!}"
+        } else {
+            column.name!!
         }
         val identifierCaseValue = optionMap[OptionName.IDENTIFIER_CASE]
         return if (identifierCaseValue == CaseOption.UPPER.value) {

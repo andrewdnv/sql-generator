@@ -22,7 +22,7 @@ class PseudoTablePrintTask(
     }
 
     private fun joinExpressions(): String {
-        return table.tableJoins.map { joinExpression(it) }.joinToString { " " }
+        return table.tableJoins.map { joinExpression(it) }.joinToString ( " " )
     }
 
     private fun joinExpression(join: TableJoin): String {
@@ -53,19 +53,19 @@ class PseudoTablePrintTask(
 
     private fun column(column: TableColumn): String {
         val useColumnAliasValue = optionMap[OptionName.USE_COLUMN_ALIAS]
-        return if (useColumnAliasValue == ChoiceOption.NO.value) {
-            columnName(column)
-        } else {
+        return if (useColumnAliasValue == ChoiceOption.YES.value) {
             columnAlias(column)
+        } else {
+            columnName(column)
         }
     }
 
     private fun columnName(column: TableColumn): String {
         val useColumnPrefixValue = optionMap[OptionName.USE_COLUMN_PREFIX]
-        val columnName = if (useColumnPrefixValue == ChoiceOption.NO.value) {
-            column.name!!
-        } else {
+        val columnName = if (useColumnPrefixValue == ChoiceOption.YES.value) {
             "${tableName(column)}.${column.name!!}"
+        } else {
+            column.name!!
         }
         val identifierCaseValue = optionMap[OptionName.IDENTIFIER_CASE]
         return if (identifierCaseValue == CaseOption.UPPER.value) {
