@@ -19,4 +19,4 @@ class CustomCondition(
 class GroupedCondition(
     val conditions: List<Condition>,
     val connector: ComparisonConnector = ComparisonConnector.AND
-)
+) : Condition()
