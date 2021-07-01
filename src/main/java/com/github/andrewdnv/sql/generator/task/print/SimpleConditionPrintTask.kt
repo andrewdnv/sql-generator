@@ -16,12 +16,15 @@ class SimpleConditionPrintTask(
 
     private fun column(): String {
         val useColumnAliasValue = optionMap[OptionName.USE_COLUMN_ALIAS]
+        val useColumnPrefixValue = optionMap[OptionName.USE_COLUMN_PREFIX]
         val column = if (condition.column is PseudoColumn) {
             columnAlias()
         } else if (useColumnAliasValue == ChoiceOption.YES.value) {
             columnAlias()
-        } else {
+        } else if (useColumnPrefixValue == ChoiceOption.YES.value) {
             "${tableNameExpression()}.${columnName()}"
+        } else {
+            columnName()
         }
         return if (condition.ignoreCase) {
             "${caseWord()}($column)"

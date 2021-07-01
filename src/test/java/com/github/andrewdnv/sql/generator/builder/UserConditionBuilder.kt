@@ -25,7 +25,7 @@ class UserConditionBuilder(
         return this
     }
 
-    fun cityNameIsNotIn(): UserConditionBuilder {
+    fun cityIsNotIn(): UserConditionBuilder {
         conditions.add(SimpleCondition(UserTable.city, ComparisonOperator.NOT_IN))
         return this
     }

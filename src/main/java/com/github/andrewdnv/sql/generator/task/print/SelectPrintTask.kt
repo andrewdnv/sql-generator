@@ -26,18 +26,18 @@ class SelectPrintTask(
     private fun fullSelectStatement(columnList: String): String {
         val keywordCaseValue = optionMap[OptionName.KEYWORD_CASE]
         return if (keywordCaseValue == CaseOption.LOWER.value) {
-            "select $columnList from ${TablePrintTaskFactory.getTask(optionMap, table)}"
+            "select $columnList from ${TablePrintTaskFactory.getTask(optionMap, table).print()}"
         } else {
-            "SELECT $columnList FROM ${TablePrintTaskFactory.getTask(optionMap, table)}"
+            "SELECT $columnList FROM ${TablePrintTaskFactory.getTask(optionMap, table).print()}"
         }
     }
 
     private fun shortSelectStatement(): String {
         val keywordCaseValue = optionMap[OptionName.KEYWORD_CASE]
         return if (keywordCaseValue == CaseOption.LOWER.value) {
-            "select * from ${TablePrintTaskFactory.getTask(optionMap, table)}"
+            "select * from ${TablePrintTaskFactory.getTask(optionMap, table).print()}"
         } else {
-            "SELECT * FROM ${TablePrintTaskFactory.getTask(optionMap, table)}"
+            "SELECT * FROM ${TablePrintTaskFactory.getTask(optionMap, table).print()}"
         }
     }
 
