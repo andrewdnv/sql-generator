@@ -13,6 +13,11 @@ class UserConditionBuilder(
 
     override val conditions = mutableListOf<Condition>()
 
+    fun userIdIsEqual(): UserConditionBuilder {
+        conditions.add(SimpleCondition(UserTable.userId, ComparisonOperator.EQUAL))
+        return this
+    }
+
     fun firstNameOrLastNameStartsWith(): UserConditionBuilder {
         val firstNameCondition = SimpleCondition(UserTable.firstName, ComparisonOperator.LIKE)
         val lastNameCondition = SimpleCondition(UserTable.lastName, ComparisonOperator.LIKE)
