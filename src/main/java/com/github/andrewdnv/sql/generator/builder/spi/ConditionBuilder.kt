@@ -17,7 +17,7 @@ interface ConditionBuilder<TF : TableFactory<TF, CB>, CB : ConditionBuilder<TF, 
 
     val conditions: MutableList<Condition>
 
-    fun oneOf(): CB {
+    fun atLeastOneOf(): CB {
         ctx.optionMap.put(OptionName.RESULT_COMPARISON_CONNECTOR, ConnectorOption.OR.value)
         return this as CB
     }
